@@ -4,15 +4,15 @@ import java.io.Serializable;
 
 import java.util.Date;
 
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
+import javax.persistence.MapsId;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -21,7 +21,7 @@ import javax.persistence.TemporalType;
 
 @Entity(name = "prsb_pdf_TemplateEntity")
 @Table(name = "prsb_pdf_Template") // Database table name
-public class PRSB_PDF_Template implements Serializable{
+public class TemplateEntity implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -48,9 +48,13 @@ public class PRSB_PDF_Template implements Serializable{
     //@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy,MM,dd", locale = "en-CA", timezone = "America/Toronto")
     private Date update_time;
 
-    @ManyToOne
+    // @Column(name = "service_code")
+    // private Integer service_code;
+
+    @OneToOne
+    @MapsId
     @JoinColumn(name = "service_code")
-    private PRSB_PDF_Service_Code prsb_PDF_Service_Code;
+    private ServiceCodeEntity serviceCodeEntity;
 
     public Integer getId() {
         return id;
@@ -100,20 +104,21 @@ public class PRSB_PDF_Template implements Serializable{
         this.update_time = update_time;
     }
 
-    public PRSB_PDF_Service_Code getPrsb_PDF_Service_Code() {
-        return prsb_PDF_Service_Code;
+    public ServiceCodeEntity getServiceCodeEntity() {
+        return serviceCodeEntity;
     }
 
-    public void setPrsb_PDF_Service_Code(PRSB_PDF_Service_Code prsb_PDF_Service_Code) {
-        this.prsb_PDF_Service_Code = prsb_PDF_Service_Code;
+    public void setServiceCodeEntity(ServiceCodeEntity serviceCodeEntity) {
+        this.serviceCodeEntity = serviceCodeEntity;
     }
 
     @Override
     public String toString() {
-        return "PRSB_PDF_Template [create_time=" + create_time + ", effective_date=" + effective_date + ", end_date="
-                + end_date + ", html=" + html + ", id=" + id + ", prsb_PDF_Service_Code=" + prsb_PDF_Service_Code
+        return "TemplateEntity [create_time=" + create_time + ", effective_date=" + effective_date + ", end_date="
+                + end_date + ", html=" + html + ", id=" + id + ", serviceCodeEntity=" + serviceCodeEntity
                 + ", update_time=" + update_time + "]";
     }
+
 
    
 

@@ -3,10 +3,10 @@ package ca.on.health.claim.pdf.template.templateservice.API.data.service;
 import java.util.Optional;
 import com.google.gson.GsonBuilder;
 
-import ca.on.health.claim.pdf.template.templateservice.API.data.entity.PRSB_PDF_Service_Code;
-import ca.on.health.claim.pdf.template.templateservice.API.data.entity.PRSB_PDF_Template;
-import ca.on.health.claim.pdf.template.templateservice.API.data.repositories.PRSB_PDF_Service_CodeRepository;
-import ca.on.health.claim.pdf.template.templateservice.API.data.repositories.PRSB_PDF_TemplateRepository;
+import ca.on.health.claim.pdf.template.templateservice.API.data.entity.ServiceCodeEntity;
+import ca.on.health.claim.pdf.template.templateservice.API.data.entity.TemplateEntity;
+import ca.on.health.claim.pdf.template.templateservice.API.data.repositories.ServiceCodeRepository;
+import ca.on.health.claim.pdf.template.templateservice.API.data.repositories.TemplateRepository;
 import io.swagger.models.Response;
 
 import com.google.gson.Gson;
@@ -22,13 +22,13 @@ import org.springframework.transaction.annotation.Transactional;
 public class EntityService {
 
     @Autowired
-    private PRSB_PDF_TemplateRepository tempRepo;// Database for Template Entity
+    private TemplateRepository tempRepo;// Database for Template Entity
     @Autowired
-    PRSB_PDF_Service_CodeRepository serviceRepo; // Database for Service_Code Entity
+    ServiceCodeRepository serviceRepo; // Database for Service_Code Entity
 
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
-    public ResponseEntity addTemplate(PRSB_PDF_Template newTemplate) {
+    public ResponseEntity addTemplate(TemplateEntity newTemplate) {
 
         tempRepo.save(newTemplate);
         return new ResponseEntity<>(gson.toJson(newTemplate), HttpStatus.OK);
@@ -42,23 +42,23 @@ public class EntityService {
     }
 
     public ResponseEntity findById(Integer id) {
-        PRSB_PDF_Template template;
+        TemplateEntity template;
         template = tempRepo.findById(id).get();
         return new ResponseEntity<>(gson.toJson(template), HttpStatus.OK);
 
     }
 
-    public Iterable<PRSB_PDF_Template> findAllTemplates() {
+    public Iterable<TemplateEntity> findAllTemplates() {
 
         return tempRepo.findAll();
     }
 
-    public Iterable<PRSB_PDF_Service_Code> getAllServiceCode() {
+    public Iterable<ServiceCodeEntity> getAllServiceCode() {
 
         return serviceRepo.findAll();
     }
     @Transactional
-    public ResponseEntity updateTemplate(PRSB_PDF_Template updateTemplate) {
+    public ResponseEntity updateTemplate(TemplateEntity updateTemplate) {
     
 
     return null;

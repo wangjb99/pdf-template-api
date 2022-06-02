@@ -7,13 +7,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import ca.on.health.claim.pdf.template.templateservice.API.data.entity.PRSB_PDF_Template;
+import ca.on.health.claim.pdf.template.templateservice.API.data.entity.TemplateEntity;
 import ca.on.health.claim.pdf.template.templateservice.API.data.service.EntityService;
 import io.swagger.annotations.ApiOperation;
 
@@ -22,7 +23,7 @@ import io.swagger.annotations.ApiResponses;
 
 @RestController
 @RequestMapping("/templates")
-public class PRSB_PDF_TemplateController {
+public class TemplateController {
 
     @Autowired
     private EntityService entityService;
@@ -35,8 +36,8 @@ public class PRSB_PDF_TemplateController {
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Internal Server Error") })
     @GetMapping(path = "/findAll")
-    public @ResponseBody Iterable<PRSB_PDF_Template> findAllTemplates() {
-        Iterable<PRSB_PDF_Template> templates;
+    public @ResponseBody Iterable<TemplateEntity> findAllTemplates() {
+        Iterable<TemplateEntity> templates;
         templates = entityService.findAllTemplates();
         return templates;
 
@@ -77,7 +78,7 @@ public class PRSB_PDF_TemplateController {
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Internal Server Error") })
     @PostMapping(value = "/addTemplate")
-    public ResponseEntity addTemplate(@RequestBody PRSB_PDF_Template prsb_PDF_Template) {
+    public ResponseEntity addTemplate(@RequestBody TemplateEntity prsb_PDF_Template) {
 
         return entityService.addTemplate(prsb_PDF_Template);
     }
@@ -89,8 +90,11 @@ public class PRSB_PDF_TemplateController {
             @ApiResponse(code = 403, message = "Forbidden"),
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Internal Server Error") })
-    public ResponseEntity updateTemplate(@RequestBody PRSB_PDF_Template updateTemplate){
+    @PutMapping(value = "/updateTemplate")
+    public ResponseEntity updateTemplate(@RequestBody TemplateEntity updateTemplate){
         return entityService.updateTemplate(updateTemplate);
         
     }
+
+    
 }

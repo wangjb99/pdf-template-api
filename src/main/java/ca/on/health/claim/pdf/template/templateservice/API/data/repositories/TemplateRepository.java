@@ -2,9 +2,9 @@ package ca.on.health.claim.pdf.template.templateservice.API.data.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 
-import ca.on.health.claim.pdf.template.templateservice.API.data.entity.PRSB_PDF_Template;
+import ca.on.health.claim.pdf.template.templateservice.API.data.entity.TemplateEntity;
 
-public interface PRSB_PDF_TemplateRepository extends CrudRepository<PRSB_PDF_Template, Integer> {
+public interface TemplateRepository extends CrudRepository<TemplateEntity, Integer> {
 
 // Example to work from    
 // @Repository
