@@ -1,9 +1,6 @@
 package ca.on.health.claim.pdf.template.templateservice.API.controllers;
 
-
 import java.util.Optional;
-
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -26,11 +23,17 @@ import io.swagger.annotations.ApiResponses;
 @RestController
 @RequestMapping("/templates")
 public class PRSB_PDF_TemplateController {
-    
+
     @Autowired
     private EntityService entityService;
 
-    // Find all templates
+    @ApiOperation(value = "Find all templates", notes = "Find all")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 500, message = "Internal Server Error") })
     @GetMapping(path = "/findAll")
     public @ResponseBody Iterable<PRSB_PDF_Template> findAllTemplates() {
         Iterable<PRSB_PDF_Template> templates;
@@ -39,32 +42,55 @@ public class PRSB_PDF_TemplateController {
 
     }
 
-    // Find template by id
+    @ApiOperation(value = "Find template by id", notes = "Find by id")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 500, message = "Internal Server Error") })
     @GetMapping(value = "/findById")
-    public @ResponseBody Optional<PRSB_PDF_Template> findbyId(@RequestParam Integer id) {
+    public ResponseEntity findbyId(@RequestParam Integer id) {
 
         return entityService.findById(id);
 
     }
 
-    // Delete a template by id
+    @ApiOperation(value = "Delete template from DB", notes = "Delete template")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 500, message = "Internal Server Error") })
     @DeleteMapping(value = "/deleteTemplate")
     public ResponseEntity deleteTemplate(@RequestParam Integer id) {
 
         return entityService.deleteTemplate(id);
     }
 
-   
     @ApiOperation(value = "Add new template to DB", notes = "Add template")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "OK"),
             @ApiResponse(code = 401, message = "Unauthorized"),
             @ApiResponse(code = 403, message = "Forbidden"),
             @ApiResponse(code = 404, message = "Not Found"),
-            @ApiResponse(code = 500, message = "Internal Server Error")})
+            @ApiResponse(code = 500, message = "Internal Server Error") })
     @PostMapping(value = "/addTemplate")
     public ResponseEntity addTemplate(@RequestBody PRSB_PDF_Template prsb_PDF_Template) {
-        
+
         return entityService.addTemplate(prsb_PDF_Template);
+    }
+
+    @ApiOperation(value = "Update template in DB", notes = "Update template")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 500, message = "Internal Server Error") })
+    public ResponseEntity updateTemplate(@RequestBody PRSB_PDF_Template updateTemplate){
+        return entityService.updateTemplate(updateTemplate);
+        
     }
 }
