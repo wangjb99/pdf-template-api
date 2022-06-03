@@ -1,7 +1,5 @@
 package ca.on.health.claim.pdf.template.templateservice.API.controllers;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -56,7 +54,7 @@ public class TemplateController {
         return entityService.findById(id);
 
     }
-    
+
     @ApiOperation(value = "Find template by service code", notes = "Find by service code")
     @ApiResponses(value = {
             @ApiResponse(code = 200, message = "OK"),
@@ -64,11 +62,10 @@ public class TemplateController {
             @ApiResponse(code = 403, message = "Forbidden"),
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Internal Server Error") })
-        @GetMapping(value = "/findByServiceCode")
-        public ResponseEntity findByServiceCode(@RequestParam Integer service_code){
-            return entityService.findByServiceCode(service_code);
-        }
-
+    @GetMapping(value = "/findByServiceCode")
+    public ResponseEntity findByServiceCode(@RequestParam Integer service_code) {
+        return entityService.findByServiceCode(service_code);
+    }
 
     @ApiOperation(value = "Delete template from DB", notes = "Delete template")
     @ApiResponses(value = {
@@ -91,9 +88,9 @@ public class TemplateController {
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Internal Server Error") })
     @PostMapping(value = "/addTemplate")
-    public ResponseEntity addTemplate(@RequestBody TemplateEntity prsb_PDF_Template) {
+    public ResponseEntity addTemplate(@RequestBody TemplateEntity templateEntity) {
 
-        return entityService.addTemplate(prsb_PDF_Template);
+        return entityService.addTemplate(templateEntity);
     }
 
     @ApiOperation(value = "Update template in DB", notes = "Update template")
@@ -104,10 +101,9 @@ public class TemplateController {
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Internal Server Error") })
     @PutMapping(value = "/updateTemplate")
-    public ResponseEntity updateTemplate(@RequestBody TemplateEntity updateTemplate){
+    public ResponseEntity updateTemplate(@RequestBody TemplateEntity updateTemplate) {
         return entityService.updateTemplate(updateTemplate);
-        
+
     }
 
-    
 }

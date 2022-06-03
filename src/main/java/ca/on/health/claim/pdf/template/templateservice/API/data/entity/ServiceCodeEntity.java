@@ -3,15 +3,14 @@ package ca.on.health.claim.pdf.template.templateservice.API.data.entity;
 import java.io.Serializable;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
+
 import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -23,7 +22,6 @@ public class ServiceCodeEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "service_code")
     private Integer service_code;
-
 
     @Column(name = "name")
     private String name;
@@ -37,7 +35,6 @@ public class ServiceCodeEntity implements Serializable {
     private Date end_date;
 
     @OneToOne(mappedBy = "serviceCodeEntity")
-   
 
     public Integer getService_code() {
         return service_code;
@@ -70,12 +67,5 @@ public class ServiceCodeEntity implements Serializable {
     public void setEnd_date(Date end_date) {
         this.end_date = end_date;
     }
-
-    
-
-   
-  
-
-    
 
 }
