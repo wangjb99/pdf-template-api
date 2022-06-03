@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -75,5 +76,18 @@ public class ServiceCodeController {
     public ResponseEntity deleteTemplate(@RequestParam Integer id) {
 
         return entityService.deleteService(id);
+    }
+
+    @ApiOperation(value = "Update service in DB", notes = "Update service")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 500, message = "Internal Server Error") })
+    @PutMapping(value = "/updateService")
+    public ResponseEntity updateTemplate(@RequestBody ServiceCodeEntity updateService) {
+        return entityService.updateService(updateService);
+
     }
 }

@@ -98,6 +98,17 @@ public class EntityService {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @Transactional
+    public ResponseEntity updateService(ServiceCodeEntity updateService) {
+        ServiceCodeEntity service;
+        service = serviceRepo.findById(updateService.getService_code()).get();
+        service.setEffective_date(updateService.getEffective_date());
+        service.setEnd_date(updateService.getEnd_date());
+        service.setName(updateService.getName());
+        
+        return new ResponseEntity<>(gson.toJson(service), HttpStatus.OK);
+    }
+
 
 
 }
