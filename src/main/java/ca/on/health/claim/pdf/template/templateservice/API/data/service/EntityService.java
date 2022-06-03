@@ -1,5 +1,7 @@
 package ca.on.health.claim.pdf.template.templateservice.API.data.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import com.google.gson.GsonBuilder;
 
@@ -62,6 +64,11 @@ public class EntityService {
     
 
     return null;
+    }
+
+    public ResponseEntity findByServiceCode(Integer service_code) {
+        ArrayList<TemplateEntity> templates = tempRepo.findByServiceCode(service_code);
+        return new ResponseEntity<>(templates, HttpStatus.OK);
     }
 
 }

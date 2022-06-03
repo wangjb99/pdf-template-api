@@ -19,8 +19,8 @@ import javax.persistence.TemporalType;
 
 
 
-@Entity(name = "prsb_pdf_TemplateEntity")
-@Table(name = "prsb_pdf_Template") // Database table name
+@Entity
+@Table(name = "Template") // Database table name
 public class TemplateEntity implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,9 +52,8 @@ public class TemplateEntity implements Serializable{
     // private Integer service_code;
 
     @OneToOne
-    @MapsId
     @JoinColumn(name = "service_code")
-    private ServiceCodeEntity serviceCodeEntity;
+    public ServiceCodeEntity serviceCodeEntity;
 
     public Integer getId() {
         return id;
@@ -112,12 +111,10 @@ public class TemplateEntity implements Serializable{
         this.serviceCodeEntity = serviceCodeEntity;
     }
 
-    @Override
-    public String toString() {
-        return "TemplateEntity [create_time=" + create_time + ", effective_date=" + effective_date + ", end_date="
-                + end_date + ", html=" + html + ", id=" + id + ", serviceCodeEntity=" + serviceCodeEntity
-                + ", update_time=" + update_time + "]";
-    }
+
+    
+
+
 
 
    

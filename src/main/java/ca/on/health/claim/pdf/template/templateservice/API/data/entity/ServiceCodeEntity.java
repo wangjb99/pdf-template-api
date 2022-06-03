@@ -9,23 +9,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity
-@Table(name = "prsb_pdf_Service_Code") // Database table name
+@Entity(name = "ServiceCodeEntity")
+@Table(name = "serviceCode") // Database table name
 public class ServiceCodeEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "service_code")
     private Integer service_code;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private TemplateEntity templateEntity;
 
     @Column(name = "name")
     private String name;
@@ -38,20 +36,15 @@ public class ServiceCodeEntity implements Serializable {
     @Temporal(TemporalType.DATE)
     private Date end_date;
 
+    @OneToOne(mappedBy = "serviceCodeEntity")
+   
+
     public Integer getService_code() {
         return service_code;
     }
 
     public void setService_code(Integer service_code) {
         this.service_code = service_code;
-    }
-
-    public TemplateEntity getTemplateEntity() {
-        return templateEntity;
-    }
-
-    public void setTemplateEntity(TemplateEntity templateEntity) {
-        this.templateEntity = templateEntity;
     }
 
     public String getName() {
@@ -78,12 +71,9 @@ public class ServiceCodeEntity implements Serializable {
         this.end_date = end_date;
     }
 
-    @Override
-    public String toString() {
-        return "ServiceCodeEntity [effective_date=" + effective_date + ", end_date=" + end_date + ", name=" + name
-                + ", service_code=" + service_code + ", templateEntity=" + templateEntity + "]";
-    }
+    
 
+   
   
 
     

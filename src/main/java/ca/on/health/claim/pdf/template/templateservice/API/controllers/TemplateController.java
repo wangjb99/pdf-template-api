@@ -56,6 +56,19 @@ public class TemplateController {
         return entityService.findById(id);
 
     }
+    
+    @ApiOperation(value = "Find template by service code", notes = "Find by service code")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 500, message = "Internal Server Error") })
+        @GetMapping(value = "findByServiceCode")
+        public ResponseEntity findByServiceCode(@RequestParam Integer service_code){
+            return entityService.findByServiceCode(service_code);
+        }
+
 
     @ApiOperation(value = "Delete template from DB", notes = "Delete template")
     @ApiResponses(value = {
