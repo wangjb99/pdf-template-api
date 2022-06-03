@@ -93,6 +93,11 @@ public class EntityService {
         return new ResponseEntity<>(serviceCodeEntity, HttpStatus.OK);
     }
 
+    public ResponseEntity deleteService(Integer id) {
+        serviceRepo.deleteById(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
 
 
 }

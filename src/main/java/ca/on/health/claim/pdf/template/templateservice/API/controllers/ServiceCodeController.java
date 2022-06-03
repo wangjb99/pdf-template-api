@@ -2,6 +2,7 @@ package ca.on.health.claim.pdf.template.templateservice.API.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -61,5 +62,18 @@ public class ServiceCodeController {
     public ResponseEntity addService(@RequestBody ServiceCodeEntity serviceCodeEntity) {
 
         return entityService.addService(serviceCodeEntity);
+    }
+
+    @ApiOperation(value = "Delete service from DB", notes = "Delete service")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 401, message = "Unauthorized"),
+            @ApiResponse(code = 403, message = "Forbidden"),
+            @ApiResponse(code = 404, message = "Not Found"),
+            @ApiResponse(code = 500, message = "Internal Server Error") })
+    @DeleteMapping(value = "/deleteService")
+    public ResponseEntity deleteTemplate(@RequestParam Integer id) {
+
+        return entityService.deleteService(id);
     }
 }
