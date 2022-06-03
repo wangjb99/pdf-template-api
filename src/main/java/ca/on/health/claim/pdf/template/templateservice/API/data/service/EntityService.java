@@ -29,6 +29,8 @@ public class EntityService {
 
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
+
+    // TemplateEntity
     public ResponseEntity addTemplate(TemplateEntity newTemplate) {
 
         tempRepo.save(newTemplate);
@@ -54,11 +56,6 @@ public class EntityService {
         return tempRepo.findAll();
     }
 
-    public Iterable<ServiceCodeEntity> getAllServiceCode() {
-
-        return serviceRepo.findAll();
-    }
-
     @Transactional
     public ResponseEntity updateTemplate(TemplateEntity updateTemplate) {
         TemplateEntity template;
@@ -76,5 +73,21 @@ public class EntityService {
         ArrayList<TemplateEntity> templates = tempRepo.findByServiceCode(service_code);
         return new ResponseEntity<>(templates, HttpStatus.OK);
     }
+
+
+    // ServiceCodeEntity
+
+    public Iterable<ServiceCodeEntity> getAllServiceCode() {
+
+        return serviceRepo.findAll();
+    }
+
+    public ResponseEntity findByCode(Integer service_code) {
+        ServiceCodeEntity serviceCode;
+        serviceCode = serviceRepo.findById(service_code).get();
+        return new ResponseEntity<>(serviceCode, HttpStatus.OK);
+    }
+
+
 
 }
