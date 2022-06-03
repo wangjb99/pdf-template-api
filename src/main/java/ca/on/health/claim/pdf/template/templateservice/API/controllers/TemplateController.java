@@ -64,7 +64,7 @@ public class TemplateController {
             @ApiResponse(code = 403, message = "Forbidden"),
             @ApiResponse(code = 404, message = "Not Found"),
             @ApiResponse(code = 500, message = "Internal Server Error") })
-        @GetMapping(value = "findByServiceCode")
+        @GetMapping(value = "/findByServiceCode")
         public ResponseEntity findByServiceCode(@RequestParam Integer service_code){
             return entityService.findByServiceCode(service_code);
         }

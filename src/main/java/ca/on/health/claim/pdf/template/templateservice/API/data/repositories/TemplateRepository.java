@@ -1,12 +1,11 @@
 package ca.on.health.claim.pdf.template.templateservice.API.data.repositories;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
-import org.springframework.http.ResponseEntity;
+
 import org.springframework.stereotype.Repository;
 
 import ca.on.health.claim.pdf.template.templateservice.API.data.entity.TemplateEntity;
@@ -15,16 +14,15 @@ import ca.on.health.claim.pdf.template.templateservice.API.data.entity.TemplateE
 public interface TemplateRepository extends CrudRepository<TemplateEntity, Integer> {
 
     @Query(value = "SELECT * FROM templates.template WHERE template.service_code = :service_code", nativeQuery = true)
-    ArrayList<TemplateEntity> findByServiceCode(@Param("service_code")Integer service_code);
+    ArrayList<TemplateEntity> findByServiceCode(@Param("service_code") Integer service_code);
 
- 
+    // public interface TemplateRepository extends CrudRepository<Template, Integer>
+    // {
+    // // Query to search DB for record by name, returns a Template object.
+    // @Query(value = "SELECT * FROM templates.temps WHERE temps.name =
+    // ?#{#temp.name}", nativeQuery = true)
+    // public Template findByName(@Param("temp")Template temp);
 
-// public  interface TemplateRepository extends CrudRepository<Template, Integer> {
-//     // Query to search DB for record by name, returns a Template object.
-//     @Query(value =  "SELECT * FROM templates.temps WHERE temps.name = ?#{#temp.name}", nativeQuery = true)
-//     public Template findByName(@Param("temp")Template temp);
+    // }
 
-    
-//     }
-    
 }
