@@ -88,6 +88,11 @@ public class EntityService {
         return new ResponseEntity<>(serviceCode, HttpStatus.OK);
     }
 
+    public ResponseEntity addService(ServiceCodeEntity serviceCodeEntity) {
+        serviceRepo.save(serviceCodeEntity);
+        return new ResponseEntity<>(serviceCodeEntity, HttpStatus.OK);
+    }
+
 
 
 }
