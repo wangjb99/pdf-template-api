@@ -30,7 +30,7 @@ public class EntityService {
     Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create();
 
 
-    // TemplateEntity
+    @Transactional
     public ResponseEntity addTemplate(TemplateEntity newTemplate) {
 
         tempRepo.save(newTemplate);
@@ -88,11 +88,13 @@ public class EntityService {
         return new ResponseEntity<>(serviceCode, HttpStatus.OK);
     }
 
+    @Transactional
     public ResponseEntity addService(ServiceCodeEntity serviceCodeEntity) {
         serviceRepo.save(serviceCodeEntity);
         return new ResponseEntity<>(serviceCodeEntity, HttpStatus.OK);
     }
 
+    @Transactional
     public ResponseEntity deleteService(Integer id) {
         serviceRepo.deleteById(id);
         return new ResponseEntity<>(HttpStatus.OK);
