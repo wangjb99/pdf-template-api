@@ -51,7 +51,7 @@ public class TemplateEntity implements Serializable {
     // private Integer service_code;
 
     @OneToOne
-    @JoinColumn(name = "service_code")
+    @JoinColumn(name = "service_code", nullable = false)
     public ServiceCodeEntity serviceCodeEntity;
 
     public Integer getId() {
