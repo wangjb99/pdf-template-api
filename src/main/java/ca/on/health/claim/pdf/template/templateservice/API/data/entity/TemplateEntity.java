@@ -24,7 +24,7 @@ public class TemplateEntity implements Serializable {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "html", length = 10000)
+    @Column(name = "html", length = 10000, nullable = false)
     private String html;
 
     @Column(name = "effective_date")
